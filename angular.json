@@ -1,0 +1,139 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "faker-ui": {
+      "root": "apps/faker-ui/",
+      "sourceRoot": "apps/faker-ui/src",
+      "projectType": "application",
+      "prefix": "forever-and-one",
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/faker-ui",
+            "index": "apps/faker-ui/src/index.html",
+            "main": "apps/faker-ui/src/main.ts",
+            "polyfills": "apps/faker-ui/src/polyfills.ts",
+            "tsConfig": "apps/faker-ui/tsconfig.app.json",
+            "assets": [
+              "apps/faker-ui/src/favicon.ico",
+              "apps/faker-ui/src/assets"
+            ],
+            "styles": [
+              "apps/faker-ui/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/faker-ui/src/environments/environment.ts",
+                  "with": "apps/faker-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "faker-ui:build",
+            "port": 4200
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "faker-ui:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "faker-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/faker-ui/src/test.ts",
+            "polyfills": "apps/faker-ui/src/polyfills.ts",
+            "tsConfig": "apps/faker-ui/tsconfig.spec.json",
+            "karmaConfig": "apps/faker-ui/karma.conf.js",
+            "styles": [
+              "apps/faker-ui/src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/faker-ui/src/favicon.ico",
+              "apps/faker-ui/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/faker-ui/tsconfig.app.json",
+              "apps/faker-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "faker-ui-e2e": {
+      "root": "apps/faker-ui-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/faker-ui-e2e/protractor.conf.js",
+            "devServerTarget": "faker-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "faker-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/faker-ui-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "defaultProject": "faker-ui"
+}

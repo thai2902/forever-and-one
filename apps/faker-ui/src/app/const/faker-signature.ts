@@ -1,0 +1,16 @@
+export const SIG = [
+    {regx: 'mail$', type: 'internet.email'},
+    {regx: 'phone$', type: 'phone.phoneNumber'},
+    {regx: 'cell', type: 'phone.phoneNumber'},
+    {regx: 'firstname', type: 'name.firstName'},
+    {regx: 'lastname', type: 'name.lastName'},
+    {regx: 'username', type: 'name.findName'},
+    {regx: 'name', type: 'name.findName'},
+    {regx: 'title', type: 'name.title'},
+    {regx: 'addr', type: 'address.streetAddress'},
+    {regx: 'dob', type: 'date.recent'},
+    {regx: 'date$', type: 'date.future'},
+    {regx: 'time$', type: 'date.future'},
+    {regx: 'seq$', type: 'random.number'},
+    {regx: 'id$', type: 'random.number'},
+]

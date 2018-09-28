@@ -1,0 +1,19 @@
+@import "../../../../node_modules/codemirror/lib/codemirror.css";
+@import "../../../../node_modules/codemirror/theme/material.css";
+@import "../../../../node_modules/codemirror/addon/fold/foldgutter.css";
+
+:root {
+    background: #2b3b42;
+}
+.container {
+    display: flex;
+    .col {
+        flex: 1;
+        padding: 10px
+    }
+}
+
+.CodeMirror {
+    height: 100vh;
+    min-height: 500px;
+}

@@ -27,9 +27,14 @@
               "apps/faker-ui/src/assets"
             ],
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "apps/faker-ui/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "js/json-schema-faker.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -77,6 +82,9 @@
             "tsConfig": "apps/faker-ui/tsconfig.spec.json",
             "karmaConfig": "apps/faker-ui/karma.conf.js",
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "apps/faker-ui/src/styles.scss"
             ],
             "scripts": [],

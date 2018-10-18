@@ -1,12 +1,12 @@
-<form #form="ngForm">
-  <button mat-raised-button type="button" (click)="generate()">Generate</button>
-</form>
 <div class="container">
   <div class="col">
+    <button mat-flat-button class="btn-generate" (click)="generate()">Generate</button>
     <ngx-codemirror [(ngModel)]="jsonText" [options]="codeMirrorConf1"></ngx-codemirror>
   </div>
   <div class="col">
-    <ngx-codemirror [ngModel]="schema | json" [options]="codeMirrorConf2"></ngx-codemirror>
+    <button mat-flat-button class="btn-generate" (click)="generateFromSchema()">Generate</button>
+    <ngx-codemirror [ngModel]="schema | json" (ngModelChange)="updateSchema($event)"
+    [options]="codeMirrorConf2"></ngx-codemirror>
   </div>
   <div class="col">
     <ngx-codemirror [ngModel]="sample | json" [options]="codeMirrorConf2"></ngx-codemirror>

@@ -1,16 +1,16 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FAKER } from './const/faker-namespace';
 import * as jsc from 'to-json-schema';
-import { SIG } from './const/faker-signature';
+import { TOKEN } from './const/faker-token';
 import * as faker from 'faker';
 import * as moment from 'moment';
 import jsf from 'json-schema-faker';
 declare var JSONSchemaFaker: any;
-JSONSchemaFaker.extend('faker', function() {
-    // return require('faker');
-    console.log('fakerfaker', faker);
-    
-    return faker;
+JSONSchemaFaker.extend('faker', function () {
+  // return require('faker');
+  console.log('fakerfaker', faker);
+
+  return faker;
 });
 
 JSONSchemaFaker.option({
@@ -64,7 +64,7 @@ export class AppComponent {
     try {
       const jsonObj = JSON.parse(this.jsonText);
       const rawSchema = jsc(jsonObj);
-      console.log('--> rawSchema',rawSchema);
+      console.log('--> rawSchema', rawSchema);
       this.schema = SchemaInjector.inject(rawSchema);
       console.log('--> schema', this.schema);
       this.generateFromSchema();
@@ -84,10 +84,11 @@ export class AppComponent {
 
   generateFromSchema() {
     const _sample = [];
-    for (let i=0; i<50; i++) {
-        _sample.push(JSONSchemaFaker.generate(this.schema))
+    for (let i = 0; i < 50; i++) {
+      _sample.push(JSONSchemaFaker.generate(this.schema))
     }
     this.sample = _sample;
+    console.log('--> sample', this.sample);
   }
 }
 
@@ -98,14 +99,14 @@ export class SchemaInjector {
       Object.keys(obj.properties).forEach(k => {
         if (obj.properties[k].type === 'string' || obj.properties[k].type === 'integer') {
           let type, faker;
-          for(let i=0; i<SIG.length; i++) {
-            if(new RegExp(SIG[i].regx, 'i').test(k)) {
-              type = SIG[i].type;
-              faker = SIG[i].faker;
+          for (let i = 0; i < TOKEN.length; i++) {
+            if (new RegExp(TOKEN[i].regx, 'i').test(k)) {
+              type = TOKEN[i].type;
+              faker = TOKEN[i].faker;
               break;
             }
           }
-          obj.properties[k]['type'] = type;
+          obj.properties[k]['type'] = type || 'string';
           obj.properties[k]['x-faker'] = faker || 'lorem.words';
           required.push(k);
         }
